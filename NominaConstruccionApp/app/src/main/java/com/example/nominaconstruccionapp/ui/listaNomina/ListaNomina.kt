@@ -4,7 +4,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -20,7 +24,12 @@ import com.example.nominaconstruccionapp.ui.theme.Azul400
 
 @Composable
 fun listaNomina(navController: NavController) {
-    Scaffold(topBar = { AppBarTitulo() }) { body(innerPadding = it) }
+    Scaffold(
+        topBar = { AppBarTitulo() },
+        floatingActionButton = { floatingActionButtonAgregar() }
+    ) {
+        body(innerPadding = it)
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -31,30 +40,40 @@ private fun AppBarTitulo(
     val stateMostrarBuscar = remember {
         mutableStateOf(false)
     }
-
-
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Azul400,
             titleContentColor = Color.White,
         ),
         title = {
-            Text(text = "Hola")
-            
+            Text(text = "Lista Nomina")
+
         },
     )
 }
 
 @Composable
-fun body(innerPadding: PaddingValues) {
+private fun floatingActionButtonAgregar() {
+    FloatingActionButton(
+        onClick = { },
+        contentColor = Color.White,
+        containerColor = Azul400
+    ) {
+        Icon(Icons.Filled.Add, "Floating action button.")
+    }
+}
+
+@Composable
+private fun body(innerPadding: PaddingValues) {
     Column(
         modifier = Modifier
             .padding(innerPadding),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
             modifier = Modifier.padding(8.dp),
             text = "ya si eladio"
         )
+
     }
 }
